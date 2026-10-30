@@ -121,7 +121,11 @@ export function useEventDetail(slugOrId) {
       }
 
       const found = initialEvents.find(
-        (e) => e.slug === slugOrId || e.id === slugOrId
+        (e) =>
+          e.slug === slugOrId ||
+          e.id === slugOrId ||
+          (slugOrId && slugOrId.includes('young-scientist') && e.slug.includes('young-scientist')) ||
+          (slugOrId && slugOrId.includes('science-seminar') && e.slug.includes('science-seminar'))
       );
 
       return found || initialEvents[0] || null;

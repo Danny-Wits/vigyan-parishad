@@ -165,6 +165,9 @@ export function Footer() {
               <Text component={Link} to="/events/national-science-seminar-2026" size="sm" c="#94A3B8" style={{ textDecoration: 'none' }}>
                 National Science Seminar 2026
               </Text>
+              <Text component={Link} to="/events/young-scientist-awards-2026" size="sm" c="#94A3B8" style={{ textDecoration: 'none' }}>
+                Young Scientist Awards
+              </Text>
               <Text component={Link} to="/events/ai-for-young-minds" size="sm" c="#94A3B8" style={{ textDecoration: 'none' }}>
                 AI for Young Minds
               </Text>

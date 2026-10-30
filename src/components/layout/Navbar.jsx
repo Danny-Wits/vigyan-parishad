@@ -191,14 +191,14 @@ export function Navbar() {
                 <Menu.Item
                   leftSection={<IconCalendarEvent size={16} color="#2563EB" />}
                   component={Link}
-                  to="/events"
+                  to="/events/national-science-seminar-2026"
                 >
                   National Science Seminar 2026
                 </Menu.Item>
                 <Menu.Item
                   leftSection={<IconAward size={16} color="#F04336" />}
                   component={Link}
-                  to="/membership"
+                  to="/events/young-scientist-awards-2026"
                 >
                   Young Scientist Awards
                 </Menu.Item>
@@ -289,7 +289,46 @@ export function Navbar() {
             })}
           </Stack>
 
-          <Box mt="md" p="sm" bg="#F8FAFC" style={{ borderRadius: 12 }}>
+          {/* Quick Portals inside Drawer */}
+          <Box p="sm" bg="#F1F5F9" style={{ borderRadius: 12 }}>
+            <Text size="xs" fw={700} c="dimmed" tt="uppercase" mb={8}>
+              Portals & Quick Access
+            </Text>
+            <Stack gap={8}>
+              <UnstyledButton
+                component={Link}
+                to="/events/national-science-seminar-2026"
+                onClick={close}
+                style={{
+                  fontSize: '0.875rem',
+                  fontWeight: 600,
+                  color: '#2563EB',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                }}
+              >
+                <IconCalendarEvent size={16} /> National Science Seminar 2026
+              </UnstyledButton>
+              <UnstyledButton
+                component={Link}
+                to="/events/young-scientist-awards-2026"
+                onClick={close}
+                style={{
+                  fontSize: '0.875rem',
+                  fontWeight: 600,
+                  color: '#EF4444',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                }}
+              >
+                <IconAward size={16} /> Young Scientist Awards
+              </UnstyledButton>
+            </Stack>
+          </Box>
+
+          <Box mt="xs" p="sm" bg="#F8FAFC" style={{ borderRadius: 12 }}>
             <Text size="xs" fw={700} c="dimmed" tt="uppercase" mb={8}>
               State Chapter
             </Text>
