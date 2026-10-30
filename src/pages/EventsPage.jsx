@@ -24,12 +24,31 @@ import {
   IconMapPin,
   IconFilter,
   IconAdjustmentsHorizontal,
+  IconClock,
 } from '@tabler/icons-react';
 import { useEvents } from '../hooks/useEvents';
 
-const CATEGORIES = ['All', 'Seminar', 'Workshop', 'Exhibition', 'Talk', 'Outreach', 'Observation'];
-const YEARS = ['All', '2026', '2025', '2024'];
-const DATES = ['All', 'Upcoming', 'This Year', 'Past Events'];
+const CATEGORIES = [
+  { value: 'All', label: 'All Categories' },
+  { value: 'Seminar', label: 'Seminar' },
+  { value: 'Workshop', label: 'Workshop' },
+  { value: 'Exhibition', label: 'Exhibition' },
+  { value: 'Talk', label: 'Talk' },
+  { value: 'Outreach', label: 'Outreach' },
+  { value: 'Observation', label: 'Observation' },
+];
+const YEARS = [
+  { value: 'All', label: 'All Years' },
+  { value: '2026', label: '2026' },
+  { value: '2025', label: '2025' },
+  { value: '2024', label: '2024' },
+];
+const DATES = [
+  { value: 'All', label: 'All Dates' },
+  { value: 'Upcoming', label: 'Upcoming' },
+  { value: 'This Year', label: 'This Year' },
+  { value: 'Past Events', label: 'Past Events' },
+];
 const SORT_OPTIONS = [
   { value: 'newest', label: 'Newest First' },
   { value: 'oldest', label: 'Oldest First' },
@@ -164,10 +183,12 @@ export function EventsPage() {
             boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)',
           }}
         >
-          <Grid gutter="xs" align="center">
+          <Grid gutter="xs" align="flex-end">
             {/* Search Input */}
             <Grid.Col span={{ base: 12, md: 3.5 }}>
               <TextInput
+                label="Search Events"
+                labelProps={{ style: { fontSize: '0.78rem', fontWeight: 600, color: '#475569', marginBottom: 4 } }}
                 placeholder="Search events by name..."
                 leftSection={<IconSearch size={16} color="#64748B" />}
                 value={searchInput}
@@ -186,7 +207,9 @@ export function EventsPage() {
             {/* Categories */}
             <Grid.Col span={{ base: 6, sm: 3, md: 2 }}>
               <Select
-                placeholder="Category"
+                label="Category"
+                labelProps={{ style: { fontSize: '0.78rem', fontWeight: 600, color: '#475569', marginBottom: 4 } }}
+                leftSection={<IconFilter size={15} color="#2563EB" />}
                 data={CATEGORIES}
                 value={category}
                 onChange={(val) => {
@@ -206,7 +229,9 @@ export function EventsPage() {
             {/* Years */}
             <Grid.Col span={{ base: 6, sm: 3, md: 1.8 }}>
               <Select
-                placeholder="Year"
+                label="Year"
+                labelProps={{ style: { fontSize: '0.78rem', fontWeight: 600, color: '#475569', marginBottom: 4 } }}
+                leftSection={<IconCalendar size={15} color="#2563EB" />}
                 data={YEARS}
                 value={year}
                 onChange={(val) => {
@@ -226,7 +251,9 @@ export function EventsPage() {
             {/* Dates */}
             <Grid.Col span={{ base: 6, sm: 3, md: 1.8 }}>
               <Select
-                placeholder="Dates"
+                label="Date Range"
+                labelProps={{ style: { fontSize: '0.78rem', fontWeight: 600, color: '#475569', marginBottom: 4 } }}
+                leftSection={<IconClock size={15} color="#2563EB" />}
                 data={DATES}
                 value={dateFilter}
                 onChange={(val) => setDateFilter(val || 'All')}
@@ -243,7 +270,9 @@ export function EventsPage() {
             {/* Sort */}
             <Grid.Col span={{ base: 6, sm: 3, md: 1.7 }}>
               <Select
-                placeholder="Sort By"
+                label="Sort By"
+                labelProps={{ style: { fontSize: '0.78rem', fontWeight: 600, color: '#475569', marginBottom: 4 } }}
+                leftSection={<IconAdjustmentsHorizontal size={15} color="#2563EB" />}
                 data={SORT_OPTIONS}
                 value={sortBy}
                 onChange={(val) => setSortBy(val || 'newest')}

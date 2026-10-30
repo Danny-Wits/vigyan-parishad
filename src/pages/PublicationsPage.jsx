@@ -24,20 +24,28 @@ import {
   IconFileText,
   IconDownload,
   IconEye,
+  IconFilter,
+  IconCalendar,
+  IconAdjustmentsHorizontal,
 } from '@tabler/icons-react';
 import { usePublications } from '../hooks/usePublications';
 
 const CATEGORIES = [
-  'All',
-  'Research Paper',
-  'Report',
-  'Proceedings',
-  'Newsletter',
-  'Article',
-  'Presentation',
+  { value: 'All', label: 'All Categories' },
+  { value: 'Research Paper', label: 'Research Paper' },
+  { value: 'Report', label: 'Report' },
+  { value: 'Proceedings', label: 'Proceedings' },
+  { value: 'Newsletter', label: 'Newsletter' },
+  { value: 'Article', label: 'Article' },
+  { value: 'Presentation', label: 'Presentation' },
 ];
 
-const YEARS = ['All', '2024', '2023', '2022'];
+const YEARS = [
+  { value: 'All', label: 'All Years' },
+  { value: '2024', label: '2024' },
+  { value: '2023', label: '2023' },
+  { value: '2022', label: '2022' },
+];
 const SORT_OPTIONS = [
   { value: 'newest', label: 'Newest First' },
   { value: 'oldest', label: 'Oldest First' },
@@ -164,10 +172,12 @@ export function PublicationsPage() {
             boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)',
           }}
         >
-          <Grid gutter="xs" align="center">
+          <Grid gutter="xs" align="flex-end">
             {/* Search Input */}
             <Grid.Col span={{ base: 12, md: 4.5 }}>
               <TextInput
+                label="Search Publications"
+                labelProps={{ style: { fontSize: '0.78rem', fontWeight: 600, color: '#475569', marginBottom: 4 } }}
                 placeholder="Search publications by title, author..."
                 leftSection={<IconSearch size={16} color="#64748B" />}
                 value={searchInput}
@@ -186,7 +196,9 @@ export function PublicationsPage() {
             {/* Categories */}
             <Grid.Col span={{ base: 6, sm: 3, md: 2.5 }}>
               <Select
-                placeholder="Category"
+                label="Category"
+                labelProps={{ style: { fontSize: '0.78rem', fontWeight: 600, color: '#475569', marginBottom: 4 } }}
+                leftSection={<IconFilter size={15} color="#2563EB" />}
                 data={CATEGORIES}
                 value={category}
                 onChange={(val) => {
@@ -206,7 +218,9 @@ export function PublicationsPage() {
             {/* Years */}
             <Grid.Col span={{ base: 6, sm: 3, md: 2 }}>
               <Select
-                placeholder="Year"
+                label="Year"
+                labelProps={{ style: { fontSize: '0.78rem', fontWeight: 600, color: '#475569', marginBottom: 4 } }}
+                leftSection={<IconCalendar size={15} color="#2563EB" />}
                 data={YEARS}
                 value={year}
                 onChange={(val) => {
@@ -226,7 +240,9 @@ export function PublicationsPage() {
             {/* Sort */}
             <Grid.Col span={{ base: 6, sm: 3, md: 1.8 }}>
               <Select
-                placeholder="Sort By"
+                label="Sort By"
+                labelProps={{ style: { fontSize: '0.78rem', fontWeight: 600, color: '#475569', marginBottom: 4 } }}
+                leftSection={<IconAdjustmentsHorizontal size={15} color="#2563EB" />}
                 data={SORT_OPTIONS}
                 value={sortBy}
                 onChange={(val) => setSortBy(val || 'newest')}

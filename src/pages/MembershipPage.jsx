@@ -19,6 +19,7 @@ import {
   Alert,
   Avatar,
   Badge,
+  Center,
 } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import {
@@ -702,9 +703,11 @@ export function MembershipPage() {
                 <Text fw={700} size="sm" c="#0B2545">
                   {member.name}
                 </Text>
-                <Text size="xs" c="#64748B" mt={2}>
-                  {member.role}
-                </Text>
+                <Center mt={6} mb={4}>
+                  <Badge color="blue" variant="light" size="sm" radius="xl">
+                    {member.role}
+                  </Badge>
+                </Center>
 
                 <Box
                   mt="md"

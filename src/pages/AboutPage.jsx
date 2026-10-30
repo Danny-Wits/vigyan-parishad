@@ -14,6 +14,7 @@ import {
   SimpleGrid,
   Avatar,
   Badge,
+  Center,
   Button,
 } from '@mantine/core';
 import {
@@ -293,9 +294,11 @@ export function AboutPage() {
               <Text fw={700} size="md" c="#0B2545">
                 {member.name}
               </Text>
-              <Badge color="blue" variant="light" size="sm" radius="xl" mt={6} mb={8}>
-                {member.role}
-              </Badge>
+              <Center mt={6} mb={8}>
+                <Badge color="blue" variant="light" size="sm" radius="xl">
+                  {member.role}
+                </Badge>
+              </Center>
               <Text size="xs" c="#64748B" lineClamp={2}>
                 {member.institution}
               </Text>

@@ -43,7 +43,7 @@ const HERO_SLIDES = [
     subtitle: "Nurturing scientific minds and advancing India's scientific heritage.",
     ctaText: 'Explore Initiatives',
     ctaLink: '/events',
-    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80',
+    image: '/hero-campus.jpg',
   },
   {
     tag: 'RESEARCH & INNOVATION',
@@ -53,7 +53,7 @@ const HERO_SLIDES = [
     subtitle: 'Fostering research culture, grassroots prototypes, and student science congresses.',
     ctaText: 'View Publications',
     ctaLink: '/publications',
-    image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',
+    image: '/hero-campus.jpg',
   },
   {
     tag: 'COMMUNITY & OUTREACH',
@@ -63,7 +63,17 @@ const HERO_SLIDES = [
     subtitle: 'High-altitude ecology, clean Himalayan rivers, and experiential science workshops.',
     ctaText: 'Join Parishad',
     ctaLink: '/membership',
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
+    image: '/hero-campus.jpg',
+  },
+  {
+    tag: 'INDIGENOUS KNOWLEDGE',
+    titleLead: 'Advancing',
+    titleAccent: 'Swadeshi Vigyan',
+    titleTrail: '& Modern Technologies',
+    subtitle: 'Bridging timeless Indian scientific wisdom with contemporary innovation.',
+    ctaText: 'About Parishad',
+    ctaLink: '/about',
+    image: '/hero-campus.jpg',
   },
 ];
 
@@ -83,112 +93,172 @@ export function HomePage() {
 
   return (
     <Box>
-      {/* Hero Banner Section */}
+      {/* Hero Banner Section matching reference mockup */}
       <Container size="xl" mt="md" mb={48}>
         <Box
-          className="hero-wavy-bg"
-          p={{ base: 'lg', md: 'xl', lg: 40 }}
-          style={{ position: 'relative', minHeight: 460 }}
+          style={{
+            position: 'relative',
+            overflow: 'hidden',
+            borderRadius: 24,
+            border: '1px solid #E2E8F0',
+            backgroundColor: '#F0F6FF',
+            background: 'linear-gradient(135deg, #F8FAFD 0%, #EBF4FF 40%, #DCEEFF 100%)',
+            minHeight: 480,
+            display: 'flex',
+            alignItems: 'center',
+          }}
         >
-          <Grid align="center" gutter={{ base: 24, md: 40 }}>
-            {/* Left Content */}
-            <Grid.Col span={{ base: 12, md: 6.5 }}>
-              <Stack gap="md" style={{ position: 'relative', zIndex: 1 }}>
-                <Box>
-                  <span className="section-tag-dash">{currentSlide.tag}</span>
-                </Box>
+          {/* Subtle bottom-left wave / organic gradient glow */}
+          <Box
+            style={{
+              position: 'absolute',
+              left: -40,
+              bottom: -40,
+              width: 380,
+              height: 380,
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, rgba(59, 130, 246, 0.03) 70%, transparent 100%)',
+              pointerEvents: 'none',
+              zIndex: 0,
+            }}
+          />
 
-                <Title
-                  order={1}
+          {/* Right Seamless Campus Image */}
+          <Box
+            style={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              bottom: 0,
+              width: '56%',
+              zIndex: 1,
+              overflow: 'hidden',
+              borderRadius: '0 24px 24px 0',
+              pointerEvents: 'none',
+            }}
+            display={{ base: 'none', md: 'block' }}
+          >
+            <img
+              src={currentSlide.image}
+              alt="University Campus Vigyan Parishad J&K"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'left center',
+                maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 40%)',
+                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 40%)',
+              }}
+            />
+          </Box>
+
+          {/* Left Hero Content */}
+          <Box
+            p={{ base: 28, sm: 40, md: 48, lg: 54 }}
+            style={{
+              position: 'relative',
+              zIndex: 2,
+              maxWidth: 680,
+              width: '100%',
+            }}
+          >
+            <Stack gap="md">
+              {/* Eyebrow tag with gradient dash */}
+              <Group gap={10} align="center">
+                <Box
                   style={{
-                    fontSize: 'clamp(2.1rem, 4vw, 3.25rem)',
-                    fontWeight: 800,
-                    lineHeight: 1.15,
-                    letterSpacing: '-0.025em',
+                    width: 28,
+                    height: 4,
+                    borderRadius: 999,
+                    background: 'linear-gradient(90deg, #F04336 0%, #2563EB 100%)',
                   }}
-                >
-                  <Text component="span" c="#0B2545" inherit>
-                    {currentSlide.titleLead}{' '}
-                  </Text>
-                  <Text component="span" c="#EF4444" inherit>
-                    {currentSlide.titleAccent}{' '}
-                  </Text>
-                  <Text component="span" c="#2563EB" inherit>
-                    {currentSlide.titleTrail}
-                  </Text>
-                </Title>
-
+                />
                 <Text
-                  size="lg"
-                  c="#475569"
-                  style={{
-                    fontSize: '1.125rem',
-                    maxWidth: 500,
-                    lineHeight: 1.5,
-                  }}
+                  size="xs"
+                  fw={800}
+                  c="#0B2545"
+                  style={{ letterSpacing: '0.12em', textTransform: 'uppercase' }}
                 >
-                  {currentSlide.subtitle}
+                  {currentSlide.tag}
                 </Text>
+              </Group>
 
-                <Group gap="md" pt="xs">
-                  <Button
-                    className="brand-gradient-btn"
-                    size="lg"
-                    radius="xl"
-                    rightSection={<IconArrowRight size={18} stroke={2.5} />}
-                    onClick={() => navigate(currentSlide.ctaLink)}
-                    style={{
-                      paddingLeft: 28,
-                      paddingRight: 24,
-                      fontSize: '1rem',
-                    }}
-                  >
-                    {currentSlide.ctaText}
-                  </Button>
-                </Group>
-
-                {/* Carousel Indicator Dots */}
-                <Group gap={8} pt="md">
-                  {HERO_SLIDES.map((_, index) => (
-                    <Box
-                      key={index}
-                      onClick={() => setActiveSlide(index)}
-                      style={{
-                        width: activeSlide === index ? 24 : 10,
-                        height: 10,
-                        borderRadius: 9999,
-                        backgroundColor: activeSlide === index ? '#EF4444' : '#BFDBFE',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                      }}
-                    />
-                  ))}
-                </Group>
-              </Stack>
-            </Grid.Col>
-
-            {/* Right Image */}
-            <Grid.Col span={{ base: 12, md: 5.5 }}>
-              <Box
+              {/* Title with exact reference hierarchy */}
+              <Title
+                order={1}
                 style={{
-                  borderRadius: 20,
-                  overflow: 'hidden',
-                  boxShadow: '0 16px 36px rgba(11, 37, 69, 0.12)',
-                  border: '4px solid #FFFFFF',
-                  maxHeight: 400,
+                  fontSize: 'clamp(2.2rem, 3.8vw, 3.35rem)',
+                  fontWeight: 800,
+                  lineHeight: 1.15,
+                  letterSpacing: '-0.025em',
                 }}
               >
-                <Image
-                  src={currentSlide.image}
-                  alt={currentSlide.titleAccent}
-                  height={380}
-                  fallbackSrc="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80"
-                  fit="cover"
-                  style={{ width: '100%' }}
-                />
-              </Box>
-            </Grid.Col>
-          </Grid>
+                <Text component="span" c="#0B2545" inherit>
+                  {currentSlide.titleLead}{' '}
+                </Text>
+                <Text component="span" c="#EF4444" inherit>
+                  {currentSlide.titleAccent}
+                </Text>
+                <Text component="div" c="#2563EB" inherit mt={2}>
+                  {currentSlide.titleTrail}
+                </Text>
+              </Title>
+
+              {/* Subtitle */}
+              <Text
+                size="lg"
+                c="#475569"
+                style={{
+                  fontSize: '1.125rem',
+                  maxWidth: 520,
+                  lineHeight: 1.55,
+                }}
+              >
+                {currentSlide.subtitle}
+              </Text>
+
+              {/* CTA Button */}
+              <Group gap="md" pt="xs">
+                <Button
+                  className="brand-gradient-btn"
+                  size="lg"
+                  radius="xl"
+                  rightSection={<IconArrowRight size={18} stroke={2.5} />}
+                  onClick={() => navigate(currentSlide.ctaLink)}
+                  style={{
+                    paddingLeft: 28,
+                    paddingRight: 24,
+                    fontSize: '1rem',
+                    fontWeight: 700,
+                  }}
+                >
+                  {currentSlide.ctaText}
+                </Button>
+              </Group>
+
+              {/* 4 Circular Indicator Dots matching reference exactly */}
+              <Group gap={10} pt="sm">
+                {HERO_SLIDES.map((_, index) => (
+                  <Box
+                    key={index}
+                    onClick={() => setActiveSlide(index)}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Go to slide ${index + 1}`}
+                    style={{
+                      width: 10,
+                      height: 10,
+                      borderRadius: '50%',
+                      backgroundColor: activeSlide === index ? '#EF4444' : '#BAE6FD',
+                      cursor: 'pointer',
+                      transition: 'all 0.25s ease',
+                      transform: activeSlide === index ? 'scale(1.2)' : 'scale(1)',
+                    }}
+                  />
+                ))}
+              </Group>
+            </Stack>
+          </Box>
         </Box>
       </Container>
 

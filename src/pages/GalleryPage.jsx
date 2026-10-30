@@ -21,12 +21,33 @@ import {
   IconArrowRight,
   IconChevronRight,
   IconPhoto,
+  IconFilter,
+  IconCalendar,
+  IconClock,
+  IconAdjustmentsHorizontal,
 } from '@tabler/icons-react';
 import { useGallery } from '../hooks/useGallery';
 
-const CATEGORIES = ['All', 'Seminar', 'Exhibition', 'Outreach', 'Workshop', 'Program', 'Observation'];
-const YEARS = ['All', '2026', '2025', '2024'];
-const DATES = ['All', 'Latest', 'Past Year'];
+const CATEGORIES = [
+  { value: 'All', label: 'All Categories' },
+  { value: 'Seminar', label: 'Seminar' },
+  { value: 'Exhibition', label: 'Exhibition' },
+  { value: 'Outreach', label: 'Outreach' },
+  { value: 'Workshop', label: 'Workshop' },
+  { value: 'Program', label: 'Program' },
+  { value: 'Observation', label: 'Observation' },
+];
+const YEARS = [
+  { value: 'All', label: 'All Years' },
+  { value: '2026', label: '2026' },
+  { value: '2025', label: '2025' },
+  { value: '2024', label: '2024' },
+];
+const DATES = [
+  { value: 'All', label: 'All Dates' },
+  { value: 'Latest', label: 'Latest Albums' },
+  { value: 'Past Year', label: 'Past Year' },
+];
 const SORT_OPTIONS = [
   { value: 'newest', label: 'Newest First' },
   { value: 'oldest', label: 'Oldest First' },
@@ -145,10 +166,12 @@ export function GalleryPage() {
             boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)',
           }}
         >
-          <Grid gutter="xs" align="center">
+          <Grid gutter="xs" align="flex-end">
             {/* Search Input */}
             <Grid.Col span={{ base: 12, md: 3.5 }}>
               <TextInput
+                label="Search Albums"
+                labelProps={{ style: { fontSize: '0.78rem', fontWeight: 600, color: '#475569', marginBottom: 4 } }}
                 placeholder="Search gallery by event name..."
                 leftSection={<IconSearch size={16} color="#64748B" />}
                 value={searchInput}
@@ -167,7 +190,9 @@ export function GalleryPage() {
             {/* Categories */}
             <Grid.Col span={{ base: 6, sm: 3, md: 2 }}>
               <Select
-                placeholder="Category"
+                label="Category"
+                labelProps={{ style: { fontSize: '0.78rem', fontWeight: 600, color: '#475569', marginBottom: 4 } }}
+                leftSection={<IconFilter size={15} color="#2563EB" />}
                 data={CATEGORIES}
                 value={category}
                 onChange={(val) => {
@@ -187,7 +212,9 @@ export function GalleryPage() {
             {/* Years */}
             <Grid.Col span={{ base: 6, sm: 3, md: 1.8 }}>
               <Select
-                placeholder="Year"
+                label="Year"
+                labelProps={{ style: { fontSize: '0.78rem', fontWeight: 600, color: '#475569', marginBottom: 4 } }}
+                leftSection={<IconCalendar size={15} color="#2563EB" />}
                 data={YEARS}
                 value={year}
                 onChange={(val) => {
@@ -207,7 +234,9 @@ export function GalleryPage() {
             {/* Dates */}
             <Grid.Col span={{ base: 6, sm: 3, md: 1.8 }}>
               <Select
-                placeholder="Dates"
+                label="Date"
+                labelProps={{ style: { fontSize: '0.78rem', fontWeight: 600, color: '#475569', marginBottom: 4 } }}
+                leftSection={<IconClock size={15} color="#2563EB" />}
                 data={DATES}
                 value={dateFilter}
                 onChange={(val) => setDateFilter(val || 'All')}
@@ -224,7 +253,9 @@ export function GalleryPage() {
             {/* Sort */}
             <Grid.Col span={{ base: 6, sm: 3, md: 1.7 }}>
               <Select
-                placeholder="Sort By"
+                label="Sort By"
+                labelProps={{ style: { fontSize: '0.78rem', fontWeight: 600, color: '#475569', marginBottom: 4 } }}
+                leftSection={<IconAdjustmentsHorizontal size={15} color="#2563EB" />}
                 data={SORT_OPTIONS}
                 value={sortBy}
                 onChange={(val) => setSortBy(val || 'newest')}

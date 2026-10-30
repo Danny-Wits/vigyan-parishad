@@ -54,6 +54,21 @@ export const theme = createTheme({
   defaultRadius: 'md',
   cursorType: 'pointer',
   components: {
+    Container: {
+      defaultProps: {
+        size: 'xl',
+      },
+      vars: (theme, props) => {
+        if (props.size === 'xl' || !props.size) {
+          return {
+            root: {
+              '--container-size': '1560px',
+            },
+          };
+        }
+        return { root: {} };
+      },
+    },
     Button: {
       defaultProps: {
         radius: 'xl',

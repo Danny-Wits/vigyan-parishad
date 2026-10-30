@@ -3,6 +3,7 @@
 @import '@mantine/carousel/styles.css';
 
 :root {
+  --mantine-container-size-xl: 1560px;
   --primary-navy: #0B2545;
   --secondary-navy: #0F2D59;
   --accent-blue: #2563EB;
@@ -11,6 +12,15 @@
   --brand-gradient: linear-gradient(90deg, #F04336 0%, #E11D48 40%, #2563EB 100%);
   --brand-gradient-hover: linear-gradient(90deg, #E03528 0%, #D0153E 40%, #1D4ED8 100%);
   --soft-blue-bg: #F0F6FF;
+}
+
+/* Widen Container on PC monitors to eliminate empty side gutters */
+.mantine-Container-root[data-size="xl"],
+.mantine-Container-root:not([data-size]) {
+  --container-size: 1560px !important;
+  max-width: 1560px !important;
+  padding-left: clamp(16px, 2.5vw, 28px) !important;
+  padding-right: clamp(16px, 2.5vw, 28px) !important;
 }
 
 * {
