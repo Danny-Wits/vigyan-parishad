@@ -58,24 +58,30 @@ export function useMembershipApplication(options = {}) {
       // 1. Try Supabase if configured
       if (isSupabaseConfigured) {
         try {
-          const { data, error } = await supabase
+          // Do not chain .select() for anonymous public submissions
+          // (Public visitors have INSERT permission, while SELECT is restricted to authenticated managers)
+          const { error } = await supabase
             .from('membership_applications')
-            .insert([payload])
-            .select()
-            .single();
+            .insert([payload]);
 
-          if (!error && data) {
-            saveApplicationToLocalStorage(data);
+          if (!error) {
+            const recorded = {
+              ...payload,
+              id: `app-${Date.now()}`,
+              created_at: new Date().toISOString(),
+            };
+            saveApplicationToLocalStorage(recorded);
             return {
               success: true,
-              data,
+              data: recorded,
               isFallback: false,
               message: 'Your membership application has been submitted successfully to the database!',
             };
           }
 
           if (error) {
-            console.warn('Supabase application insert notice (using fallback):', error.message);
+            console.error('Supabase application insert error:', error.message);
+            throw new Error(error.message);
           }
         } catch (err) {
           console.warn('Network error inserting application (using fallback):', err.message);

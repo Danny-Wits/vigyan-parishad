@@ -57,24 +57,30 @@ export function useContact(options = {}) {
       // 1. Try Supabase if configured
       if (isSupabaseConfigured) {
         try {
-          const { data, error } = await supabase
+          // Do not chain .select() for anonymous public submissions
+          // (Public visitors have INSERT permission, while SELECT is restricted to authenticated managers)
+          const { error } = await supabase
             .from('contact_messages')
-            .insert([payload])
-            .select()
-            .single();
+            .insert([payload]);
 
-          if (!error && data) {
-            saveContactMessageToLocalStorage(data);
+          if (!error) {
+            const recorded = {
+              ...payload,
+              id: `msg-${Date.now()}`,
+              created_at: new Date().toISOString(),
+            };
+            saveContactMessageToLocalStorage(recorded);
             return {
               success: true,
-              data,
+              data: recorded,
               isFallback: false,
               message: 'Your message has been sent successfully to the team!',
             };
           }
 
           if (error) {
-            console.warn('Supabase contact message insert notice (using fallback):', error.message);
+            console.error('Supabase contact message insert error:', error.message);
+            throw new Error(error.message);
           }
         } catch (err) {
           console.warn('Network error sending contact message (using fallback):', err.message);
