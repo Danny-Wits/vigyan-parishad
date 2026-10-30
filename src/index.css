@@ -102,6 +102,23 @@ body {
   background: linear-gradient(90deg, #F04336 0%, #2563EB 100%);
 }
 
+/* Hero Slide Smooth Transition */
+@keyframes heroSlideFade {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-slide-content {
+  animation: heroSlideFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
 /* Organic Blue Wave Background for Hero */
 .hero-wavy-bg {
   position: relative;

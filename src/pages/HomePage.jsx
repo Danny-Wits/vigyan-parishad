@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   Container,
@@ -80,6 +80,18 @@ const HERO_SLIDES = [
 export function HomePage() {
   const navigate = useNavigate();
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Slowly cycle between the 4 hero slides with a 5-second delay (pauses on hover)
+  useEffect(() => {
+    if (isHovered) return;
+
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [activeSlide, isHovered]);
 
   const { data: events = [] } = useEvents();
   const { data: publications = [] } = usePublications();
@@ -96,6 +108,8 @@ export function HomePage() {
       {/* Hero Banner Section matching reference mockup */}
       <Container size="xl" mt="md" mb={48}>
         <Box
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
           style={{
             position: 'relative',
             overflow: 'hidden',
@@ -162,7 +176,8 @@ export function HomePage() {
               width: '100%',
             }}
           >
-            <Stack gap="md">
+            {/* Animated Slide Content (cycles smoothly every 5s) */}
+            <Stack key={activeSlide} gap="md" className="hero-slide-content">
               {/* Eyebrow tag with gradient dash */}
               <Group gap={10} align="center">
                 <Box
@@ -235,29 +250,30 @@ export function HomePage() {
                   {currentSlide.ctaText}
                 </Button>
               </Group>
-
-              {/* 4 Circular Indicator Dots matching reference exactly */}
-              <Group gap={10} pt="sm">
-                {HERO_SLIDES.map((_, index) => (
-                  <Box
-                    key={index}
-                    onClick={() => setActiveSlide(index)}
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`Go to slide ${index + 1}`}
-                    style={{
-                      width: 10,
-                      height: 10,
-                      borderRadius: '50%',
-                      backgroundColor: activeSlide === index ? '#EF4444' : '#BAE6FD',
-                      cursor: 'pointer',
-                      transition: 'all 0.25s ease',
-                      transform: activeSlide === index ? 'scale(1.2)' : 'scale(1)',
-                    }}
-                  />
-                ))}
-              </Group>
             </Stack>
+
+            {/* 4 Circular Indicator Dots matching reference */}
+            <Group gap={10} pt="xl">
+              {HERO_SLIDES.map((_, index) => (
+                <Box
+                  key={index}
+                  onClick={() => setActiveSlide(index)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Go to slide ${index + 1}: ${HERO_SLIDES[index].tag}`}
+                  style={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: '50%',
+                    backgroundColor: activeSlide === index ? '#EF4444' : '#BAE6FD',
+                    cursor: 'pointer',
+                    transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
+                    transform: activeSlide === index ? 'scale(1.3)' : 'scale(1)',
+                    boxShadow: activeSlide === index ? '0 0 0 3px rgba(239, 68, 68, 0.25)' : 'none',
+                  }}
+                />
+              ))}
+            </Group>
           </Box>
         </Box>
       </Container>
