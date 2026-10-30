@@ -1,5 +1,5 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { AppLayout } from './components/layout/AppLayout';
 import { ScrollToTop } from './components/common/ScrollToTop';
 
@@ -31,6 +31,28 @@ import { AdminApplicationsPage } from './pages/admin/AdminApplicationsPage';
 import { AdminInquiriesPage } from './pages/admin/AdminInquiriesPage';
 
 export function App() {
+  const navigate = useNavigate();
+
+  // Global Keyboard Shortcut: Ctrl + Shift + U to launch Admin Management Portal
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      const isModifier = e.ctrlKey || e.metaKey;
+      const isShift = e.shiftKey;
+      const isUKey = e.key === 'U' || e.key === 'u' || e.code === 'KeyU';
+
+      if (isModifier && isShift && isUKey) {
+        e.preventDefault();
+        e.stopPropagation();
+        navigate('/admin');
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown, { capture: true });
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown, { capture: true });
+    };
+  }, [navigate]);
+
   return (
     <AdminAuthProvider>
       <ScrollToTop />

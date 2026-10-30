@@ -20,7 +20,6 @@ import {
   IconAlertCircle,
   IconArrowLeft,
   IconShieldCheck,
-  IconKey,
 } from '@tabler/icons-react';
 import { useAdminAuth } from '../../context/AdminAuthContext';
 import { notifications } from '@mantine/notifications';
@@ -71,12 +70,6 @@ export function AdminLoginPage() {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleFillDemo = () => {
-    setEmail('admin@vigyanparishad.org');
-    setPassword('VigyanAdmin@2026');
-    setErrorMsg('');
   };
 
   return (
@@ -173,28 +166,6 @@ export function AdminLoginPage() {
               </Button>
             </Stack>
           </form>
-
-          {/* Non-tech manager Quick Fill helper */}
-          <Box
-            mt="lg"
-            p="xs"
-            bg="#F1F5F9"
-            style={{ borderRadius: 10, textAlign: 'center' }}
-          >
-            <Text size="xs" c="#64748B" mb={6}>
-              Authorized Manager Credentials Hint:
-            </Text>
-            <Button
-              variant="light"
-              color="blue"
-              size="xs"
-              radius="xl"
-              leftSection={<IconKey size={14} />}
-              onClick={handleFillDemo}
-            >
-              Auto-fill Manager Account
-            </Button>
-          </Box>
         </Paper>
 
         <Group justify="center" mt="lg">
