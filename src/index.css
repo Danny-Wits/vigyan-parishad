@@ -1,0 +1,201 @@
+@import '@mantine/core/styles.css';
+@import '@mantine/notifications/styles.css';
+@import '@mantine/carousel/styles.css';
+
+:root {
+  --primary-navy: #0B2545;
+  --secondary-navy: #0F2D59;
+  --accent-blue: #2563EB;
+  --accent-cyan: #0284C7;
+  --accent-red: #EF4444;
+  --brand-gradient: linear-gradient(90deg, #F04336 0%, #E11D48 40%, #2563EB 100%);
+  --brand-gradient-hover: linear-gradient(90deg, #E03528 0%, #D0153E 40%, #1D4ED8 100%);
+  --soft-blue-bg: #F0F6FF;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #1E293B;
+  background-color: #F8FAFC;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Brand Gradient Buttons & Elements */
+.brand-gradient-btn {
+  background: linear-gradient(90deg, #F04336 0%, #E11D48 35%, #2563EB 100%) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  border: none !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 4px 14px rgba(240, 67, 54, 0.25);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.brand-gradient-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+  filter: brightness(1.05);
+}
+
+.brand-gradient-btn:active {
+  transform: translateY(0);
+}
+
+/* Nav Active Pill */
+.nav-pill-active {
+  background: linear-gradient(90deg, #F04336 0%, #2563EB 100%) !important;
+  color: #ffffff !important;
+  border-radius: 9999px !important;
+  font-weight: 600 !important;
+  padding: 8px 20px !important;
+}
+
+.nav-pill-inactive {
+  color: #334155 !important;
+  font-weight: 500 !important;
+  border-radius: 9999px !important;
+  padding: 8px 18px !important;
+  transition: all 0.2s ease;
+}
+
+.nav-pill-inactive:hover {
+  color: #0B2545 !important;
+  background-color: #EEF2F6 !important;
+}
+
+/* Section Tag with Gradient Dash */
+.section-tag-dash {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0B2545;
+}
+
+.section-tag-dash::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 5px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #F04336 0%, #2563EB 100%);
+}
+
+/* Organic Blue Wave Background for Hero */
+.hero-wavy-bg {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #EFF6FF 0%, #E0F2FE 40%, #FFFFFF 100%);
+  border-radius: 24px;
+  border: 1px solid #E2E8F0;
+}
+
+.hero-wavy-bg::after {
+  content: '';
+  position: absolute;
+  left: -5%;
+  bottom: -15%;
+  width: 50%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(147, 197, 253, 0.05) 70%, transparent 100%);
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Card hover animation */
+.hover-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(11, 37, 69, 0.08);
+}
+
+/* 3D Realistic Book Cover */
+.book-cover-3d {
+  position: relative;
+  display: inline-block;
+  perspective: 1000px;
+  filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+}
+
+.book-cover-3d:hover {
+  transform: translateY(-5px) rotateY(-5deg);
+}
+
+.book-cover-inner {
+  position: relative;
+  border-radius: 4px 12px 12px 4px;
+  overflow: hidden;
+  box-shadow: 
+    inset 4px 0 10px rgba(0, 0, 0, 0.3),
+    inset -2px 0 5px rgba(255, 255, 255, 0.2),
+    0 15px 35px rgba(11, 37, 69, 0.25);
+}
+
+.book-cover-spine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 14px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0.15) 40%, rgba(0,0,0,0.3) 100%);
+  z-index: 10;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Marquee / Ticker Animation */
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-track {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker 35s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+.ticker-track-paused {
+  animation-play-state: paused !important;
+}
