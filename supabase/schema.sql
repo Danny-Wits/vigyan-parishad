@@ -168,3 +168,28 @@ create policy "Allow public insert on membership_applications" on membership_app
 
 drop policy if exists "Allow public insert on contact_messages" on contact_messages;
 create policy "Allow public insert on contact_messages" on contact_messages for insert with check (true);
+
+-- Authenticated Admin Policies (Full CRUD for logged-in management)
+drop policy if exists "Allow auth full on announcements" on announcements;
+create policy "Allow auth full on announcements" on announcements for all to authenticated using (true) with check (true);
+
+drop policy if exists "Allow auth full on events" on events;
+create policy "Allow auth full on events" on events for all to authenticated using (true) with check (true);
+
+drop policy if exists "Allow auth full on publications" on publications;
+create policy "Allow auth full on publications" on publications for all to authenticated using (true) with check (true);
+
+drop policy if exists "Allow auth full on gallery_albums" on gallery_albums;
+create policy "Allow auth full on gallery_albums" on gallery_albums for all to authenticated using (true) with check (true);
+
+drop policy if exists "Allow auth full on gallery_photos" on gallery_photos;
+create policy "Allow auth full on gallery_photos" on gallery_photos for all to authenticated using (true) with check (true);
+
+drop policy if exists "Allow auth full on members" on members;
+create policy "Allow auth full on members" on members for all to authenticated using (true) with check (true);
+
+drop policy if exists "Allow auth full on membership_applications" on membership_applications;
+create policy "Allow auth full on membership_applications" on membership_applications for all to authenticated using (true) with check (true);
+
+drop policy if exists "Allow auth full on contact_messages" on contact_messages;
+create policy "Allow auth full on contact_messages" on contact_messages for all to authenticated using (true) with check (true);

@@ -251,6 +251,9 @@ export function Footer() {
             <Text component={Link} to="/contact" size="xs" c="#64748B" style={{ textDecoration: 'none' }}>
               Help Desk
             </Text>
+            <Text component={Link} to="/admin" size="xs" c="#3B82F6" fw={600} style={{ textDecoration: 'none' }}>
+              Manager Portal
+            </Text>
           </Group>
         </Group>
       </Container>
